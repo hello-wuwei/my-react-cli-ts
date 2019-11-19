@@ -1,7 +1,7 @@
 import React from 'react';
 import './style/common.less';
 import background from './assets/images/picture.png'
-import Icon from './component/Icon'
+import Icon from 'components/Icon'
 
 function App() {
   return (
