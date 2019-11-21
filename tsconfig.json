@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true, 
+    "jsx": "react",
+    "lib": ["es6", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "rootDir": "src",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5",
+    "baseUrl": ".",
+    "paths": {   // 使ts识别webpack中alias配置的路径
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "src/assets/"
+  ]
+}

@@ -1,7 +1,7 @@
 const path = require('path');
 module.exports = {
   entry: {
-    index: './src/index.js',
+    index: './src/index.tsx',
     // framework: ['react','react-dom'],
     aliIcons: './src/assets/icons/iconfont.js'
   },
@@ -10,7 +10,7 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-map',  // 打包后打印对应源码文件
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: ['.tsx', '.ts', '.js', '.json'],
     alias: {
       "@": path.resolve(__dirname, "../src/"),
       pages: path.resolve(__dirname, "../src/pages/"),
@@ -27,9 +27,9 @@ module.exports = {
         **@babel/core：**babel的核心模块
       */
       {
-        test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
+        test: /\.(js|jsx|tsx)$/,
+        use: ['babel-loader', 'ts-loader'],
+        exclude: [path.resolve('node_modules'), path.resolve('src/assets')]
       },
       {
         test: /\.(eot|ttf|svg|woff|woff2)$/,

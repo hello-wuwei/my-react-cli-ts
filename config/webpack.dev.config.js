@@ -5,6 +5,8 @@ const common = require('./webpack.base.config.js');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const setupProxy = require('./setupProxy')
+
 module.exports = merge(common, {
   mode: 'development',
   module: {
@@ -15,7 +17,11 @@ module.exports = merge(common, {
         use: [ 
           'style-loader', // 开发环境css文件没必要单独打包（故：MiniCssExtractPlugin.loader -> style-loader ）
           'css-loader',    // webpack识别css文件（webpack只识别js代码，需要转化）
-          'less-loader'  // 转换less文件样式为css
+          // 'less-loader'  // 转换less文件样式为css
+          {
+            loader: 'less-loader',
+            options:  { javascriptEnabled: true }   // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js)
+          }
         ]
       }
     ]
@@ -28,7 +34,8 @@ module.exports = merge(common, {
     open: true,
     port: 9000,
     compress: true,
-    hot: true
+    hot: true,
+    proxy: setupProxy
   },
   plugins: [
     new HtmlWebpackPlugin({
