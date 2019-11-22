@@ -5,7 +5,7 @@ const common = require('./webpack.base.config.js');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const setupProxy = require('./setupProxy')
+// const setupProxy = require('./setupProxy')
 
 module.exports = merge(common, {
   mode: 'development',
@@ -31,11 +31,12 @@ module.exports = merge(common, {
   },
   devServer: {
     contentBase: path.resolve(__dirname, '../dist'),
+    historyApiFallback: true,    // 当使用 HTML5 History API 时，任意的 404 响应都可能需要被替代为 index.html
     open: true,
     port: 9000,
     compress: true,
     hot: true,
-    proxy: setupProxy
+    // proxy: setupProxy
   },
   plugins: [
     new HtmlWebpackPlugin({
