@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Menu, Icon } from 'antd'
 import menus from './config'
 const { SubMenu } = Menu

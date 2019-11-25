@@ -16,14 +16,41 @@ module.exports = merge(common, {
         test: /\.less$/,
         use: [ 
           'style-loader', // 开发环境css文件没必要单独打包（故：MiniCssExtractPlugin.loader -> style-loader ）
-          'css-loader',    // webpack识别css文件（webpack只识别js代码，需要转化）
+          // 'css-loader',    // webpack识别css文件（webpack只识别js代码，需要转化）
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: "[name]__[local]___[hash:base64:5]",
+              },
+              sourceMap: true
+            }
+          },
           // 'less-loader'  // 转换less文件样式为css
           {
             loader: 'less-loader',
-            options:  { javascriptEnabled: true }   // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js)
+            options:  {
+              javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js)
+              
+            }
           }
         ]
-      }
+      },
+      // {//antd样式处理
+      //   test:/\.less$/,
+      //   exclude:/src/,
+      //   use:[
+      //     'style-loader',
+      //     'css-loader',
+      //     {
+      //       loader: 'less-loader',
+      //       options:  {
+      //         javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js)
+              
+      //       }
+      //     }
+      //   ]
+      // },
     ]
   },
   output: {

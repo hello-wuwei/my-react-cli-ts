@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Menu from './Menu'
+import styles from './index.module.less'
 
-const SiderBar = () => {
+type Iprops = {
+  collapsed: boolean
+}
+
+console.log(styles)
+const SiderBar:FC<Iprops> = ({ collapsed }) => {
   return (
-    <div>
-      <div style={{ color: "#fff", lineHeight: '60px', textAlign: 'center', fontSize: 20 }}>闪逛商城管理系统</div>
+    <div className={styles.siderbar}>
+      <div className="logo">
+        {!collapsed && '闪逛商城管理系统'}
+      </div>
       <Menu />
     </div>
   )
