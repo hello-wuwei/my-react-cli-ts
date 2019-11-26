@@ -1,11 +1,17 @@
 import React from 'react'
 import { Menu, Icon } from 'antd'
 import menus from './config'
+import history from '@/history'
 const { SubMenu } = Menu
 
 const Index = () => {
+  
+  const onMenuItemClick = ({ item, key, keyPath, domEvent }:any) => {
+    history.push(key)
+  }
+
   return (
-    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={onMenuItemClick}>
       {
         menus.map((menu:any) => 
           menu.children && menu.children.length ?

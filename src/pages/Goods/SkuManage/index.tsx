@@ -2,7 +2,7 @@ import React from 'react'
 
 const SpuManage = () => {
   return (
-    <div>SPU管理</div>
+    <div>SKU管理</div>
   )
 }
 

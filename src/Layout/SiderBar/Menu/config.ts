@@ -5,29 +5,24 @@ export default [
     icon: 'user',
     children: [
       {
-        key: '11',
-        name: 'SPU管理',
-        path: '/spu-manage'
+        key: '/spu-manage',
+        name: 'SPU管理'
       },
       {
-        key: '12',
-        name: 'SKU管理',
-        path: '/sku-manage'
+        key: '/sku-manage',
+        name: 'SKU管理'
       },
       {
-        key: '13',
-        name: '分类管理',
-        path: '/classify-manage'
+        key: '/classify-manage',
+        name: '分类管理'
       },
       {
-        key: '14',
-        name: '品牌管理',
-        path: '/brand-manage'
+        key: '/brand-manage',
+        name: '品牌管理'
       },
       {
-        key: '15',
-        name: '供应商管理',
-        path: '/supplier-manage'
+        key: '/supplier-manage',
+        name: '供应商管理'
       }
     ]
   },
