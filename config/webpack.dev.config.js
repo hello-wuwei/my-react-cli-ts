@@ -5,7 +5,7 @@ const common = require('./webpack.base.config.js');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// const setupProxy = require('./setupProxy')
+const setupProxy = require('./setupProxy')
 
 module.exports = merge(common, {
   mode: 'development',
@@ -14,6 +14,7 @@ module.exports = merge(common, {
       /* 遇到后缀为.css的文件，webpack先用css-loader加载器去解析这个文件，遇到“@import”等语句就将相应样式文件引入（所以如果没有css-loader，就没法解析这类语句），最后计算完的css，将会使用style-loader生成一个内容为最终解析完的css代码的style标签，放到head标签里*/
       {
         test: /\.less$/,
+        exclude:[/node_modules/],
         use: [ 
           'style-loader', // 开发环境css文件没必要单独打包（故：MiniCssExtractPlugin.loader -> style-loader ）
           // 'css-loader',    // webpack识别css文件（webpack只识别js代码，需要转化）
@@ -30,27 +31,27 @@ module.exports = merge(common, {
           {
             loader: 'less-loader',
             options:  {
-              javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js)
-              
+              javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js) 
             }
           }
         ]
       },
-      // {//antd样式处理
-      //   test:/\.less$/,
-      //   exclude:/src/,
-      //   use:[
-      //     'style-loader',
-      //     'css-loader',
-      //     {
-      //       loader: 'less-loader',
-      //       options:  {
-      //         javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js)
+      // 单独处理node_modules中antd的样式
+      { 
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options:  {
+              javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js)
               
-      //       }
-      //     }
-      //   ]
-      // },
+            }
+          }
+        ],
+        include: [/node_modules/],
+      }
     ]
   },
   output: {
@@ -63,7 +64,7 @@ module.exports = merge(common, {
     port: 9000,
     compress: true,
     hot: true,
-    // proxy: setupProxy
+    proxy: setupProxy
   },
   plugins: [
     new HtmlWebpackPlugin({

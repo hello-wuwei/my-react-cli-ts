@@ -13,7 +13,7 @@
     "baseUrl": ".",
     "paths": {   // 使ts识别webpack中alias配置的路径
       "@/*": ["src/*"],
-      "components/*": ["src/components/*"]
+      "components": ["src/components/index.ts"]
     }
   },
   "exclude": [

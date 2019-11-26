@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
 import { Layout } from 'antd'
+import { RouteComponentProps } from 'react-router-dom'
 import SiderBar from './SiderBar'
 import LayoutHeader from './Header'
+import MainRouter from './MainRouter'
 const { Header, Sider, Content } = Layout
 
-const Frame = () => {
+const Frame = ({ match }: RouteComponentProps) => {
   const [ collapsed, setCollapsed ] = useState(false)
   const onSwitch = () => {
     setCollapsed(!collapsed)
   }
   return (
-    <Layout>
-      <Sider collapsible collapsed={collapsed}><SiderBar collapsed={collapsed} /></Sider>
+    <Layout style={{ height: '100%' }}>
+      <Sider collapsed={collapsed}><SiderBar collapsed={collapsed} /></Sider>
       <Layout>
         <Header style={{ background: '#fff', padding: 0 }}><LayoutHeader collapsed={collapsed} onSwitch={onSwitch} /></Header>
-        <Content>Content</Content>
+        <Content style={{ padding: 20 }}>
+          <MainRouter />
+        </Content>
       </Layout>
     </Layout>
   )

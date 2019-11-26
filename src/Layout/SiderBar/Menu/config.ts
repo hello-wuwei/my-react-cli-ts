@@ -7,22 +7,27 @@ export default [
       {
         key: '11',
         name: 'SPU管理',
+        path: '/spu-manage'
       },
       {
         key: '12',
         name: 'SKU管理',
+        path: '/sku-manage'
       },
       {
         key: '13',
         name: '分类管理',
+        path: '/classify-manage'
       },
       {
         key: '14',
         name: '品牌管理',
+        path: '/brand-manage'
       },
       {
         key: '15',
         name: '供应商管理',
+        path: '/supplier-manage'
       }
     ]
   },
