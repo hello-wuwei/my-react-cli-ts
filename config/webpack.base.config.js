@@ -6,6 +6,7 @@ module.exports = {
     aliIcons: path.resolve(__dirname, '../src/assets/icons/iconfont.js')
   },
   output: {
+    publicPath: '/',
     filename: 'js/[name].[chunkhash:8].bundle.js' // 给打包出的js文件换个不确定名字：这个操作是为了防止因为浏览器缓存带来的业务代码更新，而页面却没变化的问题，你想想看，假如客户端请求js文件的时候发现名字是一样的，那么它很有可能不发新的数据包，而直接用之前缓存的文件，当然，这和缓存策略有关。
   },
   devtool: 'cheap-module-eval-source-map',  // 打包后打印对应源码文件

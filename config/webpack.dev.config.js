@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const setupProxy = require('./setupProxy')
+console.log(process.env)
 
 module.exports = merge(common, {
   mode: 'development',
@@ -13,7 +14,7 @@ module.exports = merge(common, {
     rules: [
       /* 遇到后缀为.css的文件，webpack先用css-loader加载器去解析这个文件，遇到“@import”等语句就将相应样式文件引入（所以如果没有css-loader，就没法解析这类语句），最后计算完的css，将会使用style-loader生成一个内容为最终解析完的css代码的style标签，放到head标签里*/
       {
-        test: /\.less$/,
+        test: /\.(css|less)$/,
         exclude:[/node_modules/],
         use: [ 
           'style-loader', // 开发环境css文件没必要单独打包（故：MiniCssExtractPlugin.loader -> style-loader ）
@@ -38,7 +39,7 @@ module.exports = merge(common, {
       },
       // 单独处理node_modules中antd的样式
       { 
-        test: /\.less$/,
+        test: /\.(less|css)$/,
         use: [
           'style-loader',
           'css-loader',
@@ -55,11 +56,13 @@ module.exports = merge(common, {
     ]
   },
   output: {
+    publicPath: '/',
     filename: 'js/[name].[hash:8].bundle.js',
   },
   devServer: {
     contentBase: path.resolve(__dirname, '../dist'),
     historyApiFallback: true,    // 当使用 HTML5 History API 时，任意的 404 响应都可能需要被替代为 index.html
+    host: process.env.HOST || '0.0.0.0',
     open: true,
     port: 9000,
     compress: true,

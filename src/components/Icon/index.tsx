@@ -10,7 +10,7 @@ type IProps = {
 //   size?: number
 // }
 
-const Icon:FC<IProps> = ({ type, size = 16, ...restProps }) => {
+const Icon = ({ type, size = 16, ...restProps }:IProps) => {
   return (
     <svg {...restProps} width={size} height={size} aria-hidden="true">
       <use xlinkHref={`#icon${type}`}></use>

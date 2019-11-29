@@ -1,0 +1,36 @@
+.draggable-tree{
+  overflow: hidden;
+  :global{
+    // li{
+    //   border-bottom: 1px solid #ccc
+    // }
+    li span[draggable]{
+      position: relative;
+      line-height: 46px;
+      :after{
+        position: absolute;
+        content: "";
+        height: 1;
+        background: #ccc;
+        right: 0;
+        bottom: 0;
+        width: 100%
+        // border-bottom: 1px solid #ccc
+      }
+      
+    }
+
+    li .ant-tree-node-content-wrapper{
+      height: 54;
+    }
+    li span.ant-tree-switcher{
+      height: 48;
+      .ant-tree-switcher-icon{
+        padding-top: 20
+      }
+    }
+    li{
+      padding: 0 !important
+    }
+  }
+}

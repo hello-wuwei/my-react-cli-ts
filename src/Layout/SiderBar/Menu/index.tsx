@@ -6,7 +6,7 @@ const { SubMenu } = Menu
 
 const Index = () => {
   
-  const onMenuItemClick = ({ item, key, keyPath, domEvent }:any) => {
+  const onMenuItemClick = ({ key }:any) => {
     history.push(key)
   }
 

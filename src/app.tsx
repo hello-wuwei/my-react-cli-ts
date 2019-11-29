@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom'
+import { hot } from 'react-hot-loader'
 import history from './history'
 import './style/common.less'
 import Login from '@/Login'
@@ -16,4 +17,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default hot(module)(App)

@@ -17,5 +17,13 @@
   ],
   "plugins": [
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true}]
+  ],
+  "ignore":[
+    "react-router-dom.js",
+    "react-dom.js",
+    "react.js",
+    "webpack-dev-server.js",
+    "webpack.js",
+    "react-responsive.js"
   ]
 }
