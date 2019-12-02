@@ -6,7 +6,6 @@ import SortableList from './SortableList'
 const treeData = [
   {
     name: '家用电器',
-    level: 1,
     index: 1,
     status: '开启',
     created: '2016-09-21  08:50:08',
@@ -14,7 +13,6 @@ const treeData = [
     children: [
       {
         name: '大家电',
-        level: 2,
         index: 11,
         status: '关闭',
         created: '2016-09-21  08:50:08',
@@ -22,7 +20,6 @@ const treeData = [
         children: [
           {
             name: '空调',
-            level: 3,
             index: 111,
             status: '关闭',
             created: '2016-09-21  08:50:08',
@@ -30,7 +27,6 @@ const treeData = [
           },
           {
             name: '液晶电视',
-            level: 3,
             index: 112,
             status: '关闭',
             created: '2016-09-21  08:50:08',
@@ -40,7 +36,6 @@ const treeData = [
       },
       {
         name: '小家电',
-        level: 2,
         index: 12,
         status: '开启',
         created: '2016-09-21  08:50:08',
@@ -50,7 +45,6 @@ const treeData = [
   },
   {
     name: '时尚服装',
-    level: 1,
     index: 2,
     status: '开启',
     created: '2016-09-21  08:50:08',

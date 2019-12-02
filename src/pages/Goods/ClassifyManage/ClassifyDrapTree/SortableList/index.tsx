@@ -4,7 +4,7 @@ import styles from './spus.module.less'
 
 type ItemIProps = {
   name: string,
-  level: number,
+  level?: number,
   index?: number,
   status?: string,
   created?: string,
@@ -13,28 +13,31 @@ type ItemIProps = {
 }
 
 type IProps = {
-  tree: ItemIProps[]
+  tree: ItemIProps[],
+  textIndent?: number
 }
 
-const SortableTree = ({ tree }:IProps) => {
-  const elid = 'items' + tree[0].level
+const SortableTree = ({ tree, textIndent = 15 }:IProps) => {
   const ref = useRef(null)
+  const level = tree[0].level || 0  // 默认为0（即为一级节点）
   
   useEffect(() => {
     Sortable.create(ref.current!, {
-      handle: `.group-parent-node-${tree[0].level}`
+      handle: `.group-parent-node-${level}`
     })
   }, [])
   return (
-    <ul ref={ref} className={styles.spus}>
+    <ul ref={ref} id="items" className={styles.spus}>
       {
         tree.map((item:ItemIProps) => {
           return (
             <li key={item.name}>
-              <div className={`group-parent-node group-parent-node-${item.level}`}><div>{item.name}</div><div>{item.index}</div><div>{item.status}</div><div>{item.created}</div><div>{item.action}</div></div>
+              <div className={`group-parent-node group-parent-node-${level}`}>
+                <div style={{ textIndent: level * textIndent }} className="name">{item.name}</div><div>{item.index}</div><div>{item.status}</div><div>{item.created}</div><div>{item.action}</div>
+              </div>
               { item.children && item.children.length ?
                 <div className="group-children-node">
-                  <SortableTree tree={item.children} />
+                  <SortableTree tree={item.children.map(child => { child["level"] = level + 1; return child })} />
                 </div> : null
               }
             </li>

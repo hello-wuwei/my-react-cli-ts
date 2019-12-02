@@ -1,13 +1,15 @@
 .spus{
   :global{
     li{
-      .group-parent-node{
+      div.group-parent-node{
         display: flex;
         line-height: 54px;
         border-bottom: 1px solid #ccc;
-        div:nth-child(1){
-          width: 160;
-          text-align: initial
+        div.name{
+          box-sizing: border-box;
+          width: 160px;
+          text-align: initial;
+          flex: none
         }
         div{
           text-align: center;
