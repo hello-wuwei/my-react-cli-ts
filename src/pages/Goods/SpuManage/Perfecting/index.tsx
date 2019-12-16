@@ -1,5 +1,7 @@
 import React from 'react'
-import { Button, Table } from 'antd'
+import { Button } from 'antd'
+import { GoTable } from 'components'
+import history from '@/history'
 
 const columns = [
   {
@@ -8,15 +10,15 @@ const columns = [
     render: (text:any) => <a>{text}</a>,
   },
   {
-    title: '商品名称',
+    title: '商品分类',
     dataIndex: 'age',
   },
   {
-    title: '商品类型',
-    dataIndex: 'type',
+    title: '商品品牌',
+    dataIndex: 'kind',
   },
   {
-    title: '商品品牌',
+    title: '经销商',
     dataIndex: 'kind',
   },
   {
@@ -26,6 +28,15 @@ const columns = [
   {
     title: '操作',
     dataIndex: 'action',
+    render: () => {
+      return (
+        <div>
+          <Button type="link" onClick={() => history.push('/spu-property-add')}>添加属性</Button>
+          <Button type="link">编辑</Button>
+          <Button type="link">删除</Button>
+        </div>
+      )
+    }
   },
 ];
 const data = [
@@ -69,13 +80,17 @@ const rowSelection = {
 const Perfecting = () => {
   return (
     <div>
+      <div style={{ marginBottom: 16 }}>
+        <Button type="primary" icon="plus" style={{ marginRight: 16 }} onClick={() => history.push('/spu-add')}>添加SPU</Button>
+        <Button type="primary">从外部导入</Button>
+      </div>
       <div>
         <Button style={{ marginRight: 16 }}>批量操作</Button>
         <Button icon="dash" style={{ marginRight: 16 }}></Button>
         <Button>删除</Button>
       </div>
       <div style={{ marginTop: 20 }}>
-        <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+        <GoTable rowSelection={rowSelection} columns={columns} dataSource={data} />
       </div>
     </div>
   )

@@ -22,8 +22,8 @@ const ClassifyManage = ({ match, location }:RouteComponentProps) => {
 
   return (
     <div>
-      <div className="page-header">
-        <GoPageTop title="商品分类">
+      <div className="go-page-header">
+        <GoPageTop title="商品管理">
           <Column label="商品品类" style={{ width: "25%" }}>
             <Input />
           </Column>
@@ -37,13 +37,9 @@ const ClassifyManage = ({ match, location }:RouteComponentProps) => {
             <Button type="primary" icon="plus" style={{ marginRight: 16 }}>查询</Button>
             <Button icon="plus">重置</Button>
           </Column>
-          <Column style={{ width: '100%' }}>
-            <Button type="primary" icon="plus" style={{ marginRight: 16 }}>添加SPU</Button>
-            <Button type="primary">从外部导入</Button>
-          </Column>
         </GoPageTop>
       </div>
-      <div className="page-body">
+      <div className="go-page-body">
         <Tabs defaultActiveKey={location.pathname} onChange={onGoodsChange}>
           <TabPane tab="待完善" key={`${match.url}/perfecting`} />
           <TabPane tab="已完善" key={`${match.url}/perfected`} />

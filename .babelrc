@@ -15,9 +15,11 @@
     ],
     "@babel/preset-react"
   ],
-  "plugins": [
-    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true}]
-  ],
+  "plugins": ["react-hot-loader/babel", ["import", {
+    "libraryName": "antd",
+    "libraryDirectory": "lib",
+    "style": true
+  }]],
   "ignore":[
     "react-router-dom.js",
     "react-dom.js",

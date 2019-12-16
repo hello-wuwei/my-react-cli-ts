@@ -33,7 +33,7 @@ type ItemProps = {
 }
 
 const Column:FC<ItemProps> = ({ label, children, style }) => {
-  const defaultStyle = { display: 'flex', alignItems: 'center', paddingRight: 16, marginBottom: 16 }
+  const defaultStyle = { display: 'flex', alignItems: 'center', paddingRight: 16, marginBottom: 20 }
   return (
     <div style={{ ...defaultStyle, ...style }}>
       { label ? <label>{ label }：</label> : null }
