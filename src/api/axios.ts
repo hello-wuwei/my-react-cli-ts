@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { message } from 'antd'
+import { baseUrl } from './config'
 
-const defaultBaseURL = '/'
-axios.defaults.baseURL = defaultBaseURL
+axios.defaults.baseURL = baseUrl
 axios.defaults.withCredentials = true
 
 axios.interceptors.request.use(
@@ -24,9 +24,8 @@ axios.interceptors.response.use(
     }
   },
   error => {
-    let errorData = (error && error.response && error.response.data) || { message: '网络错误' }
-    message.error(errorData.message)
-    return Promise.reject(errorData)
+    console.error(error)
+    return Promise.reject(error)
   }
 )
 

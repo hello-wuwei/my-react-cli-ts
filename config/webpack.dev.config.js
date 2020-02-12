@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const setupProxy = require('./setupProxy')
 
+const { cssLoader, lessLoader, nodeModulesStyleHandle } = require('./styleHandleBase')
 module.exports = merge(common, {
   mode: 'development',
   module: {
@@ -17,41 +18,12 @@ module.exports = merge(common, {
         exclude:[/node_modules/],
         use: [ 
           'style-loader', // 开发环境css文件没必要单独打包（故：MiniCssExtractPlugin.loader -> style-loader ）
-          // 'css-loader',    // webpack识别css文件（webpack只识别js代码，需要转化）
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: "[name]__[local]___[hash:base64:5]",
-              },
-              sourceMap: true
-            }
-          },
-          // 'less-loader'  // 转换less文件样式为css
-          {
-            loader: 'less-loader',
-            options:  {
-              javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js) 
-            }
-          }
+          cssLoader,
+          lessLoader
         ]
       },
       // 单独处理node_modules中antd的样式
-      { 
-        test: /\.(less|css)$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'less-loader',
-            options:  {
-              javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js)
-              
-            }
-          }
-        ],
-        exclude:/src/,
-      }
+      nodeModulesStyleHandle
     ]
   },
   output: {

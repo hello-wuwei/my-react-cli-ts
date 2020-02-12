@@ -10,6 +10,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const autoprefixer = require("autoprefixer")
 
+const { cssLoader, lessLoader, nodeModulesStyleHandle } = require('./styleHandleBase')
 module.exports = merge(common, {
   mode: 'production',
   module: {
@@ -28,15 +29,7 @@ module.exports = merge(common, {
         use: [ 
           // 'style-loader', 
           MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: "[name]__[local]___[hash:base64:5]",
-              },
-              sourceMap: true
-            }
-          },    // webpack识别css文件（webpack只识别js代码，需要转化）
+          cssLoader,
           {
             loader: "postcss-loader",
             options: {
@@ -46,30 +39,11 @@ module.exports = merge(common, {
                 })
             }
           },
-          {
-            loader: 'less-loader',
-            options:  {
-              javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js) 
-            }
-          }  // 转换less文件样式为css
+          lessLoader
         ]
       },
       // 单独处理node_modules中antd的样式
-      { 
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'less-loader',
-            options:  {
-              javascriptEnabled: true,  // 解决报错：Module build failed (from ./node_modules/_less-loader@4.1.0@less-loader/dist/cjs.js)
-              
-            }
-          }
-        ],
-        include: [/node_modules/],
-      }
+      nodeModulesStyleHandle
     ]
   },
   plugins: [

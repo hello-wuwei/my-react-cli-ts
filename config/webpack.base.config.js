@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 module.exports = {
   entry: {
@@ -54,5 +55,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.APP_ENV': JSON.stringify(process.env.APP_ENV || 'production')
+    }) 
+  ]
 }

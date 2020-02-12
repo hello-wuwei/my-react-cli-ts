@@ -25,41 +25,5 @@ export default [
         name: '供应商管理'
       }
     ]
-  },
-  {
-    key: '2',
-    name: '订单管理',
-    icon: 'team',
-    children: [
-      {
-        key: '21',
-        name: '订单菜单一'
-      },
-      {
-        key: '22',
-        name: '订单菜单二'
-      }
-    ]
-  },
-  {
-    key: '3',
-    name: '营销管理',
-    icon: 'team',
-    children: [
-      {
-        key: '31',
-        name: '营销菜单一'
-      }
-    ]
-  },
-  {
-    key: '4',
-    name: '用户管理',
-    icon: 'team'
-  },
-  {
-    key: '5',
-    name: '财务管理',
-    icon: 'team'
   }
 ]
